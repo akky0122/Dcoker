@@ -1,0 +1,22 @@
+---
+ - hosts: localhost
+   become: yes
+   tasks:
+     - name: tomcat container creation
+       docker_container: 
+         name: my_tomcat
+         image: tomcat
+         state: started
+         ports: 
+           - "8080:8080"
+
+             #  name: Start Tomcat service
+             # systemd:
+             # name: tomcat
+         command: catalina.sh run
+
+
+     - name: Debug tomcat container
+       debug:
+         var: ansible_facts.docker_container.my_tomcat   
+        

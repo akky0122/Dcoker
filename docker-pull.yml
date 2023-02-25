@@ -1,0 +1,13 @@
+ - hosts: localhost
+   become: yes
+   tasks:
+     - name: Pull Docker Image
+       docker_image:  
+          name: tomcat     
+         # tag: latest
+          pull: yes
+       register: docker_image_result
+
+     - name: Debug Docker image name and tag
+       debug:
+         var: docker_image_result
